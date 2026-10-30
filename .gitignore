@@ -1,0 +1,23 @@
+# Personal configuration and local checkup data
+/local-config.json
+/config.json
+/local-*.json
+/reports/
+/docs/
+.last-checkup.json
+.checkup.lock
+.state-*.tmp
+*-体检.md
+*-体检.json
+*.update-*
+
+# Credentials and generated files
+.env
+.env.*
+auth.json
+credentials.json
+*.pem
+*.key
+__pycache__/
+*.py[cod]
+.pytest_cache/

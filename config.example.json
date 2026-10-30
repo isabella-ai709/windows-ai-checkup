@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "workspaceRoots": [],
+  "cacheRoots": [],
+  "skillRoots": [],
+  "protectedRoots": [],
+  "taskPathPrefixes": [],
+  "serviceNames": [],
+  "outputProbes": [],
+  "limits": { "maxEntries": 50000, "maxDepth": 12, "maxSecondsPerRoot": 20 }
+}
