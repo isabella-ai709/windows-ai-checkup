@@ -1,4 +1,4 @@
 interface:
-  display_name: "Windows 只读体检"
-  short_description: "检查电脑与 AI 工作区的占用变化和后台异常，生成中文报告，由你决定处理方式"
-  default_prompt: "使用 $windows-ai-checkup，在已授权范围内给我的 Windows 电脑做一次只读体检。"
+  display_name: "Windows 体检与清理"
+  short_description: "盘点空间与运行状态，分级可回收项，生成清理计划并可撤销执行"
+  default_prompt: "使用 $windows-ai-checkup，在已授权范围内做一次只读体检，先给报告和清理计划，不要执行清理。"

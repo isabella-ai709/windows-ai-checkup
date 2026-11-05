@@ -1,11 +1,88 @@
 {
-  "version": 1,
-  "workspaceRoots": [],
-  "cacheRoots": [],
-  "skillRoots": [],
-  "protectedRoots": [],
+  "version": 2,
+  "workspaceRoots": [
+    "D:\\Work"
+  ],
+  "cacheRoots": [
+    {
+      "kind": "named",
+      "name": "npm"
+    },
+    {
+      "kind": "named",
+      "name": "pip"
+    },
+    {
+      "kind": "named",
+      "name": "uv"
+    },
+    {
+      "kind": "named",
+      "name": "temp"
+    },
+    {
+      "kind": "named",
+      "name": "chrome"
+    },
+    {
+      "kind": "named",
+      "name": "edge"
+    }
+  ],
+  "skillRoots": [
+    "C:\\Users\\YourName\\.workbuddy\\skills"
+  ],
+  "protectedRoots": [
+    "D:\\Documents"
+  ],
   "taskPathPrefixes": [],
   "serviceNames": [],
   "outputProbes": [],
-  "limits": { "maxEntries": 50000, "maxDepth": 12, "maxSecondsPerRoot": 20 }
+  "cleanup": {
+    "enabled": true,
+    "recycleMode": "quarantine",
+    "quarantineRoot": "{drive}:\\Checkup\\quarantine",
+    "retentionDays": 7,
+    "maxPerRunGB": 5,
+    "maxItemsPerRun": 200,
+    "requireConfirm": true,
+    "skipObservationCheck": false,
+    "whitelist": [
+      "**\\.git\\**",
+      "**\\.workbuddy\\**",
+      "**\\.codex\\**"
+    ]
+  },
+  "rules": {
+    "tempOlderThanDays": 3,
+    "logOlderThanDays": 7,
+    "logFileMB": 50,
+    "largeFileMB": 200,
+    "staleDependencyDays": 90,
+    "keepPreviousRuntimes": 1,
+    "installLeftoverMinAgeHours": 24,
+    "minCandidateMB": 1
+  },
+  "thresholds": {
+    "diskFreePercentWarn": 10,
+    "diskDaysToFullWarn": 30,
+    "memAvailablePercentWarn": 15,
+    "growthWarnGB": 1
+  },
+  "system": {
+    "eventLogDays": 7,
+    "power": {
+      "enabled": false,
+      "requiresAdmin": true
+    },
+    "sfc": {
+      "enabled": false,
+      "requiresAdmin": true
+    }
+  },
+  "limits": {
+    "maxEntries": 200000,
+    "maxDepth": 12,
+    "maxSecondsPerRoot": 60
+  }
 }

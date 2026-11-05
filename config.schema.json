@@ -1,0 +1,276 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/isabella-ai709/windows-ai-checkup/config.schema.json",
+  "title": "windows-ai-checkup config",
+  "type": "object",
+  "required": [
+    "version",
+    "workspaceRoots",
+    "cacheRoots",
+    "skillRoots",
+    "protectedRoots",
+    "taskPathPrefixes",
+    "serviceNames",
+    "outputProbes"
+  ],
+  "properties": {
+    "version": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "workspaceRoots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cacheRoots": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "named",
+                  "path"
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "skillRoots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "protectedRoots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "taskPathPrefixes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^\\\\"
+      }
+    },
+    "serviceNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputProbes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "maxAgeDays": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 365
+          }
+        },
+        "required": [
+          "path",
+          "maxAgeDays"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "cleanup": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "recycleMode": {
+          "enum": [
+            "quarantine"
+          ]
+        },
+        "quarantineRoot": {
+          "type": "string"
+        },
+        "retentionDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 90
+        },
+        "maxPerRunGB": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 50
+        },
+        "maxItemsPerRun": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5000
+        },
+        "requireConfirm": {
+          "type": "boolean"
+        },
+        "skipObservationCheck": {
+          "type": "boolean"
+        },
+        "whitelist": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "rules": {
+      "type": "object",
+      "properties": {
+        "tempOlderThanDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 365
+        },
+        "logOlderThanDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 365
+        },
+        "logFileMB": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "largeFileMB": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "staleDependencyDays": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "keepPreviousRuntimes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "installLeftoverMinAgeHours": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 168
+        },
+        "minCandidateMB": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1024,
+          "description": "小于该体积的候选不进入清单。"
+        }
+      },
+      "additionalProperties": false
+    },
+    "thresholds": {
+      "type": "object",
+      "properties": {
+        "diskFreePercentWarn": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "diskDaysToFullWarn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "memAvailablePercentWarn": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "growthWarnGB": {
+          "type": "number",
+          "minimum": 0.1
+        }
+      },
+      "additionalProperties": false
+    },
+    "system": {
+      "type": "object",
+      "properties": {
+        "eventLogDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 90
+        },
+        "power": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "requiresAdmin": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "sfc": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "requiresAdmin": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "maxEntries": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500000
+        },
+        "maxDepth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "maxSecondsPerRoot": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}
